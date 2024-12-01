@@ -2,7 +2,10 @@ package days.day1;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.Utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -11,10 +14,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class Day1Test {
 
     Day1 day1;
+    String testData;
 
     @BeforeClass
-    public void setup() {
+    public void setup() throws IOException {
         day1 = new Day1();
+        testData = Utils.readAsString(new File("src/main/resources/inputs/day1-test.txt"));
     }
 
     @Test
@@ -66,6 +71,10 @@ public class Day1Test {
                 1   3
                 2 """;
         assertThatThrownBy(() -> day1.parseInput(data)).isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @Test
+    public void testCasePart1() {
+        assertThat(day1.solvePart1(testData)).isEqualTo(11);
     }
 }

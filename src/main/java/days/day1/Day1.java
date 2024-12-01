@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import problem.Problem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Day1 implements Problem {
@@ -16,7 +17,10 @@ public class Day1 implements Problem {
 
     @Override
     public Object solvePart1(String input) {
-        return null;
+        parseInput(input);
+        Collections.sort(list1);
+        Collections.sort(list2);
+        return listDifference(list1, list2);
     }
 
     @Override
