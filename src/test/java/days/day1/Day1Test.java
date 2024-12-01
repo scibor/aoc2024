@@ -51,5 +51,13 @@ public class Day1Test {
         assertThat(day1.listDifference(list2, list1)).isEqualTo(50);
     }
 
+    @Test
+    public void readSimpleData() {
+        var data = """
+                1   3
+                2   4""";
+        day1.parseInput(data);
+        Day1Assert.assertThat(day1).hasList1(1, 2).hasList2(3, 4);
+    }
 
 }
