@@ -31,10 +31,18 @@ public class Day1Test {
     }
 
     @Test
-    public void listDifferenceForListsOfDifferentLengths() {
+    public void listDifferenceForListsOfDifferentLengths1() {
         var list1 = List.of(1, 2, 3, 4, 5);
         var list2 = List.of(11, 12, 13, 14);
         assertThatThrownBy(() -> day1.listDifference(list1, list2)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void listDifferenceForListsOfDifferentLengths2() {
+        var list1 = List.of(1, 2, 3);
+        var list2 = List.of(11, 12, 13, 14);
+        assertThatThrownBy(() -> day1.listDifference(list1, list2)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }
