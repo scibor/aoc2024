@@ -30,7 +30,8 @@ public class Day1 implements Problem {
 
     @Override
     public Object solvePart2(String input) {
-        return null;
+        parseInput(input);
+        return similarityScore(list1, list2Histogram);
     }
 
     public int listDifference(List<Integer> list1, List<Integer> list2) {

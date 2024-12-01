@@ -104,4 +104,9 @@ public class Day1Test {
         assertThat(day1.similarityScore(list, histogram)).isEqualTo(2);
     }
 
+    @Test
+    public void testCasePart2() {
+        assertThat(day1.solvePart2(testData)).isEqualTo(31L);
+    }
+
 }
