@@ -44,5 +44,12 @@ public class Day1Test {
         assertThatThrownBy(() -> day1.listDifference(list1, list2)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    public void listDifferenceShouldBePositive() {
+        var list1 = List.of(1, 2, 3, 4, 5);
+        var list2 = List.of(11, 12, 13, 14, 15);
+        assertThat(day1.listDifference(list2, list1)).isEqualTo(50);
+    }
+
 
 }

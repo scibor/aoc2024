@@ -27,7 +27,7 @@ public class Day1 implements Problem {
         }
         int result = 0;
         for (int i = 0; i < list1.size(); i++) {
-            result += list2.get(i) - list1.get(i);
+            result += Math.abs(list2.get(i) - list1.get(i));
         }
         return result;
     }
