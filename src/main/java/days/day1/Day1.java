@@ -38,6 +38,10 @@ public class Day1 implements Problem {
 
     public void parseInput(String data) {
         String[] numbers = data.split("\\s+");
+        if (numbers.length % 2 != 0) {
+            logger.error("Number of numbers in the input is {} but should be even", numbers.length);
+            throw new IllegalArgumentException("Number of numbers in the input should be even");
+        }
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
         for (int i = 0; i < numbers.length; i++) {

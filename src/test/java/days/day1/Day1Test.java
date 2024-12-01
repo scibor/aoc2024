@@ -60,4 +60,12 @@ public class Day1Test {
         Day1Assert.assertThat(day1).hasList1(1, 2).hasList2(3, 4);
     }
 
+    @Test
+    public void readingMalformedData() {
+        var data = """
+                1   3
+                2 """;
+        assertThatThrownBy(() -> day1.parseInput(data)).isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
