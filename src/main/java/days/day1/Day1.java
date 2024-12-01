@@ -21,6 +21,10 @@ public class Day1 implements Problem {
     }
 
     public int listDifference(List<Integer> list1, List<Integer> list2) {
+        if (list1.size() != list2.size()) {
+            logger.error("Lists {} and {} should be of same length, but they lengths are {} and {}", list1, list2, list1.size(), list2.size());
+            throw new IllegalArgumentException("Lists should be the same length");
+        }
         int result = 0;
         for (int i = 0; i < list1.size(); i++) {
             result += list2.get(i) - list1.get(i);

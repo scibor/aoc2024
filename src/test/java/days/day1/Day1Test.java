@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class Day1Test {
 
@@ -27,6 +28,13 @@ public class Day1Test {
         var list1 = List.of(1, 2, 3, 4, 5);
         var list2 = List.of(11, 12, 13, 14, 15);
         assertThat(day1.listDifference(list1, list2)).isEqualTo(50);
+    }
+
+    @Test
+    public void listDifferenceForListsOfDifferentLengths() {
+        var list1 = List.of(1, 2, 3, 4, 5);
+        var list2 = List.of(11, 12, 13, 14);
+        assertThatThrownBy(() -> day1.listDifference(list1, list2)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
