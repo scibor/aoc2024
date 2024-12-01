@@ -1,5 +1,6 @@
 package days.day1;
 
+import org.assertj.core.api.AssertionsForInterfaceTypes;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Utils;
@@ -76,5 +77,15 @@ public class Day1Test {
     @Test
     public void testCasePart1() {
         assertThat(day1.solvePart1(testData)).isEqualTo(11);
+    }
+
+    @Test
+    public void simpleHistogramFromList2() {
+        var data = """
+                1   3
+                1   1
+                1   3""";
+        day1.parseInput(data);
+        AssertionsForInterfaceTypes.assertThat(day1.getList2Histogram()).containsEntry(1, 1L).containsEntry(3, 2L);
     }
 }

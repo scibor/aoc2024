@@ -7,6 +7,9 @@ import problem.Problem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Day1 implements Problem {
 
@@ -14,6 +17,8 @@ public class Day1 implements Problem {
 
     private List<Integer> list1;
     private List<Integer> list2;
+
+    private Map<Integer, Long> list2Histogram;
 
     @Override
     public Object solvePart1(String input) {
@@ -55,6 +60,8 @@ public class Day1 implements Problem {
                 list2.add(Integer.parseInt(numbers[i]));
             }
         }
+
+        list2Histogram = list2.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
     public List<Integer> getList1() {
@@ -63,5 +70,9 @@ public class Day1 implements Problem {
 
     public List<Integer> getList2() {
         return list2;
+    }
+
+    public Map<Integer, Long> getList2Histogram() {
+        return list2Histogram;
     }
 }
