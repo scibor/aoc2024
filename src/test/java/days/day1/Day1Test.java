@@ -22,4 +22,11 @@ public class Day1Test {
         assertThat(day1.listDifference(list1, list1)).isZero();
     }
 
+    @Test
+    public void listDifferenceForDifferentLists() {
+        var list1 = List.of(1, 2, 3, 4, 5);
+        var list2 = List.of(11, 12, 13, 14, 15);
+        assertThat(day1.listDifference(list1, list2)).isEqualTo(50);
+    }
+
 }
