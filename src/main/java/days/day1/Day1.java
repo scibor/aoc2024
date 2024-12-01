@@ -21,31 +21,18 @@ public class Day1 implements Problem {
     private Map<Integer, Long> list2Histogram;
 
     @Override
-    public Object solvePart1(String input) {
-        parseInput(input);
+    public Object solvePart1() {
         Collections.sort(list1);
         Collections.sort(list2);
         return listDifference(list1, list2);
     }
 
     @Override
-    public Object solvePart2(String input) {
-        parseInput(input);
+    public Object solvePart2() {
         return similarityScore(list1, list2Histogram);
     }
 
-    public int listDifference(List<Integer> list1, List<Integer> list2) {
-        if (list1.size() != list2.size()) {
-            logger.error("Lists {} and {} should be of same length, but they lengths are {} and {}", list1, list2, list1.size(), list2.size());
-            throw new IllegalArgumentException("Lists should be the same length");
-        }
-        int result = 0;
-        for (int i = 0; i < list1.size(); i++) {
-            result += Math.abs(list2.get(i) - list1.get(i));
-        }
-        return result;
-    }
-
+    @Override
     public void parseInput(String data) {
         String[] numbers = data.split("\\s+");
         if (numbers.length % 2 != 0) {
@@ -61,8 +48,26 @@ public class Day1 implements Problem {
                 list2.add(Integer.parseInt(numbers[i]));
             }
         }
-
         list2Histogram = list2.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    @Override
+    public void cleanData() {
+        list1 = null;
+        list2 = null;
+        list2Histogram = null;
+    }
+
+    public int listDifference(List<Integer> list1, List<Integer> list2) {
+        if (list1.size() != list2.size()) {
+            logger.error("Lists {} and {} should be of same length, but they lengths are {} and {}", list1, list2, list1.size(), list2.size());
+            throw new IllegalArgumentException("Lists should be the same length");
+        }
+        int result = 0;
+        for (int i = 0; i < list1.size(); i++) {
+            result += Math.abs(list2.get(i) - list1.get(i));
+        }
+        return result;
     }
 
     public long similarityScore(List<Integer> numbers, Map<Integer, Long> histogram) {

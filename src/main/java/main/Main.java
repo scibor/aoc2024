@@ -20,7 +20,8 @@ public class Main {
         Problem problem = new Day1();
         File inputFile = Path.of("src/main/resources/inputs/" + fileName).toFile();
         String input = Utils.readAsString(inputFile);
-        logger.info("Part 1 solution: {}", problem.solvePart1(input));
-        logger.info("Part 2 solution: {}", problem.solvePart2(input));
+        problem.parseInput(input);
+        logger.info("Part 1 solution: {}", problem.solvePart1());
+        logger.info("Part 2 solution: {}", problem.solvePart2());
     }
 }

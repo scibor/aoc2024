@@ -25,8 +25,10 @@ public class Main {
         Instant end = Instant.now().plus(1, ChronoUnit.MINUTES);
         int runs = 0;
         while (Instant.now().isBefore(end)) {
-            problem.solvePart1(input);
-            problem.solvePart2(input);
+            problem.parseInput(input);
+            problem.solvePart1();
+            problem.solvePart2();
+            problem.cleanData();
             runs++;
         }
         logger.info("Number of iterations in a minute: {}", runs);

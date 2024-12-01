@@ -77,7 +77,8 @@ public class Day1Test {
 
     @Test
     public void testCasePart1() {
-        assertThat(day1.solvePart1(testData)).isEqualTo(11);
+        day1.parseInput(testData);
+        assertThat(day1.solvePart1()).isEqualTo(11);
     }
 
     @Test
@@ -106,7 +107,8 @@ public class Day1Test {
 
     @Test
     public void testCasePart2() {
-        assertThat(day1.solvePart2(testData)).isEqualTo(31L);
+        day1.parseInput(testData);
+        assertThat(day1.solvePart2()).isEqualTo(31L);
     }
 
 }

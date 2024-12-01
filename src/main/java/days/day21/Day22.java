@@ -9,12 +9,22 @@ public class Day22 implements Problem {
     private static final Logger logger = LoggerFactory.getLogger(Day22.class);
 
     @Override
-    public Object solvePart1(String input) {
+    public Object solvePart1() {
         return null;
     }
 
     @Override
-    public Object solvePart2(String input) {
+    public Object solvePart2() {
         return null;
+    }
+
+    @Override
+    public void parseInput(String input) {
+
+    }
+
+    @Override
+    public void cleanData() {
+
     }
 }
