@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class Utils {
+
+    private Utils() {
+    }
+
     public static String readAsString(File input) throws IOException {
         return Files.readString(input.toPath());
     }
