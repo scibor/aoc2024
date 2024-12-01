@@ -64,6 +64,10 @@ public class Day1 implements Problem {
         list2Histogram = list2.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
+    public long similarityScore(List<Integer> numbers, Map<Integer, Long> histogram) {
+        return numbers.stream().mapToLong(x -> x * histogram.get(x)).sum();
+    }
+
     public List<Integer> getList1() {
         return list1;
     }

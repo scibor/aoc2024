@@ -8,6 +8,7 @@ import utils.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -87,5 +88,15 @@ public class Day1Test {
                 1   3""";
         day1.parseInput(data);
         AssertionsForInterfaceTypes.assertThat(day1.getList2Histogram()).containsEntry(1, 1L).containsEntry(3, 2L);
+    }
+
+    @Test
+    public void similarityScore() {
+        var data = """
+                1   3
+                3   1
+                1   3""";
+        day1.parseInput(data);
+        assertThat(day1.similarityScore(List.of(1, 3, 1), Map.of(1, 1L, 3, 2L))).isEqualTo(8);
     }
 }
