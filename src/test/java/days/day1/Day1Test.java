@@ -92,11 +92,16 @@ public class Day1Test {
 
     @Test
     public void similarityScore() {
-        var data = """
-                1   3
-                3   1
-                1   3""";
-        day1.parseInput(data);
-        assertThat(day1.similarityScore(List.of(1, 3, 1), Map.of(1, 1L, 3, 2L))).isEqualTo(8);
+        var list = List.of(1, 3, 1);
+        var histogram = Map.of(1, 1L, 3, 2L);
+        assertThat(day1.similarityScore(list, histogram)).isEqualTo(8);
     }
+
+    @Test
+    public void similarityScoreWithValueOutsideHistogram() {
+        var list = List.of(1, 2, 1);
+        var histogram = Map.of(1, 1L, 3, 2L);
+        assertThat(day1.similarityScore(list, histogram)).isEqualTo(2);
+    }
+
 }
