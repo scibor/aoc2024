@@ -36,12 +36,18 @@ public class Day2Test {
 
     @Test(dataProvider = "isReportSafe")
     public void isReportSafe(List<Integer> list, boolean result) {
-        AssertionsForClassTypes.assertThat(day2.isReportSafe(list)).isEqualTo(result);
+        AssertionsForClassTypes.assertThat(Day2.isReportSafe(list)).isEqualTo(result);
     }
 
     @Test
     public void parseReport() {
         String input = "1 2 3 4 5";
         AssertionsForInterfaceTypes.assertThat(day2.parseReport(input)).isEqualTo(List.of(1, 2, 3, 4, 5));
+    }
+
+    @Test
+    public void testCasePart1() {
+        day2.parseInput(testData);
+        AssertionsForClassTypes.assertThat(day2.solvePart1()).isEqualTo(2L);
     }
 }
