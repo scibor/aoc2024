@@ -18,7 +18,7 @@ public class Day2Test {
 
 
     @DataProvider(name = "isReportMonotone")
-    public static Object[][] lists2() {
+    public static Object[][] isReportMonotone() {
         return new Object[][]{
                 {List.of(1, 2, 3, 4, 5), true},
                 {List.of(1, 2, 3, 4, 4), false},
@@ -26,6 +26,22 @@ public class Day2Test {
                 {List.of(7, 6, 4, 3, 1), true},
                 {List.of(7, 6, 4, 3, 3), false},
                 {List.of(7, 6, 4, 3, 5), false},
+                {List.of(), true}
+        };
+    }
+
+    @DataProvider(name = "isReportMonotoneWithDampener")
+    public static Object[][] isReportMonotoneWithDampener() {
+        return new Object[][]{
+                {List.of(1, 2, 3, 4, 5), true},
+                {List.of(1, 2, 3, 4, 4), true},
+                {List.of(1, 2, 3, 4, 3), true},
+                {List.of(7, 6, 4, 3, 1), true},
+                {List.of(7, 6, 4, 3, 3), true},
+                {List.of(7, 6, 4, 3, 5), true},
+                {List.of(1, 2, 1, 2), false},
+                {List.of(1, 2, 2, 2), false},
+                {List.of(2, 2, 3, 4), true},
                 {List.of(), true}
         };
     }
@@ -41,7 +57,7 @@ public class Day2Test {
     }
 
     @DataProvider(name = "isReportSafe")
-    public static Object[][] lists() {
+    public static Object[][] isReportSafe() {
         return new Object[][]{
                 {List.of(1, 2, 3, 4, 5), true},
                 {List.of(1, 3, 4, 6, 7), true},
@@ -53,6 +69,28 @@ public class Day2Test {
                 {List.of(), true}
         };
     }
+
+    @DataProvider(name = "isReportSafeWithDampener")
+    public static Object[][] isReportSafeWithDampener() {
+        return new Object[][]{
+                {List.of(1, 2, 3, 4, 5), true},
+                {List.of(1, 2, 3, 10, 4, 5), true},
+                {List.of(1, 2, 3, 10, 11, 4, 5), false},
+                {List.of(2, 2, 3, 10, 4, 5), false},
+                {List.of(2, 2, 3, 4, 5), true},
+                {List.of(1, 3, 4, 6, 7), true},
+                {List.of(10, 13, 7, 6, 5), true},
+                {List.of(13, 10, 16, 18, 20), true},
+                {List.of(100, 1, 2, 3), true},
+                {List.of(7, 6, 4, 3, 1), true},
+                {List.of(5, 4, 3, 2, 1), true},
+                {List.of(1, 2, 5), true},
+                {List.of(1, 2, 6), true},
+                {List.of(1, 2, 1), true},
+                {List.of(), true}
+        };
+    }
+
 
     @BeforeClass
     public void setup() throws IOException {
@@ -81,8 +119,27 @@ public class Day2Test {
         day2.parseInput(testData);
         AssertionsForClassTypes.assertThat(day2.solvePart1()).isEqualTo(2L);
     }
+
     @Test(dataProvider = "listWithoutElement")
     public void listWithoutElement(List<Integer> list, int index, List<Integer> result) {
         AssertionsForClassTypes.assertThat(Day2.listWithoutElement(list, index)).isEqualTo(result);
     }
+
+
+    @Test(dataProvider = "isReportMonotoneWithDampener")
+    public void isReportMonotoneWithDampener(List<Integer> list, boolean result) {
+        AssertionsForClassTypes.assertThat(Day2.isReportMonotoneWithDampener(list)).isEqualTo(result);
+    }
+
+    @Test(dataProvider = "isReportSafeWithDampener")
+    public void isReportSafeWithDampener(List<Integer> list, boolean result) {
+        AssertionsForClassTypes.assertThat(Day2.isReportSafeWithDampener(list)).isEqualTo(result);
+    }
+
+    @Test
+    public void testCasePart2() {
+        day2.parseInput(testData);
+        AssertionsForClassTypes.assertThat(day2.solvePart2()).isEqualTo(4L);
+    }
+
 }
