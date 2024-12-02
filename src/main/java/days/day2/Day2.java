@@ -97,6 +97,6 @@ public class Day2 implements Problem {
     }
 
     public List<Integer> parseReport(String input) {
-        return Arrays.stream(input.trim().split("\\s")).map(Integer::parseInt).toList();
+        return Arrays.stream(input.trim().split(" ")).map(Integer::parseInt).toList();
     }
 }
