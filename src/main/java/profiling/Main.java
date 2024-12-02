@@ -1,6 +1,6 @@
 package profiling;
 
-import days.day1.Day1;
+import days.day2.Day2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import problem.Problem;
@@ -18,8 +18,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         logger.info("Starting profiling");
-        String fileName = "day1.txt";
-        Problem problem = new Day1();
+        String fileName = "day2.txt";
+        Problem problem = new Day2();
         File inputFile = Path.of("src/main/resources/inputs/" + fileName).toFile();
         String input = Utils.readAsString(inputFile);
         Instant end = Instant.now().plus(1, ChronoUnit.MINUTES);
