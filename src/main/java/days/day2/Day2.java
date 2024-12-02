@@ -40,6 +40,15 @@ public class Day2 implements Problem {
         return true;
     }
 
+    public static List<Integer> listWithoutElement(List<Integer> list, int index) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (i == index) continue;
+            result.add(list.get(i));
+        }
+        return result;
+    }
+
     @Override
     public Object solvePart1() {
         return reports.stream().filter(Day2::isReportSafe).count();
