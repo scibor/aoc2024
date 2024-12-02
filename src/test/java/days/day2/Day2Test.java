@@ -1,6 +1,7 @@
 package days.day2;
 
 import org.assertj.core.api.AssertionsForClassTypes;
+import org.assertj.core.api.AssertionsForInterfaceTypes;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -36,5 +37,11 @@ public class Day2Test {
     @Test(dataProvider = "isReportSafe")
     public void isReportSafe(List<Integer> list, boolean result) {
         AssertionsForClassTypes.assertThat(day2.isReportSafe(list)).isEqualTo(result);
+    }
+
+    @Test
+    public void parseReport() {
+        String input = "1 2 3 4 5";
+        AssertionsForInterfaceTypes.assertThat(day2.parseReport(input)).isEqualTo(List.of(1, 2, 3, 4, 5));
     }
 }

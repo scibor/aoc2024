@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import problem.Problem;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Day2 implements Problem {
@@ -37,5 +38,9 @@ public class Day2 implements Problem {
             }
         }
         return true;
+    }
+
+    public List<Integer> parseReport(String input) {
+        return Arrays.stream(input.trim().split("\\s")).map(Integer::parseInt).toList();
     }
 }
