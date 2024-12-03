@@ -14,7 +14,7 @@ public class Day3 implements Problem {
 
     @Override
     public Object solvePart1() {
-        return parseMult(new ParsingResult(new ArrayList<>(), input))
+        return parseMul(new ParsingResult(new ArrayList<>(), input))
                 .parsed
                 .stream()
                 .mapToLong(Mul::evaluate)
@@ -36,7 +36,7 @@ public class Day3 implements Problem {
 
     }
 
-    public ParsingResult parseMult(ParsingResult input) {
+    public ParsingResult parseMul(ParsingResult input) {
         String toParse = input.inputLeft;
         List<Mul> alreadyParsed = input.parsed;
 
@@ -57,7 +57,7 @@ public class Day3 implements Problem {
         }
 
         if (currentChar != ',') {
-            return parseMult(new ParsingResult(alreadyParsed, toParse.substring(index)));
+            return parseMul(new ParsingResult(alreadyParsed, toParse.substring(index)));
         }
 
         index++;
@@ -70,11 +70,67 @@ public class Day3 implements Problem {
         }
 
         if (currentChar != ')') {
-            return parseMult(new ParsingResult(alreadyParsed, toParse.substring(index)));
+            return parseMul(new ParsingResult(alreadyParsed, toParse.substring(index)));
         }
 
         alreadyParsed.add(new Mul(Long.parseLong(firstArgument.toString()), Long.parseLong(secondArgument.toString())));
-        return parseMult(new ParsingResult(alreadyParsed, toParse.substring(index)));
+        return parseMul(new ParsingResult(alreadyParsed, toParse.substring(index)));
+    }
+
+    public ParsingWithConditionalsResult parseMulWithConditionals(ParsingWithConditionalsResult parsingResult) {
+        String toParse = parsingResult.inputLeft;
+        List<Mul> alreadyParsed = parsingResult.parsed;
+        boolean enabled = parsingResult.enabled;
+
+        int index = toParse.indexOf("mul(");
+        int dontIndex = toParse.indexOf("don't()");
+        int doIndex = toParse.indexOf("do()");
+
+        if (index < 0) {
+            return new ParsingWithConditionalsResult(alreadyParsed, "", enabled);
+        }
+
+        if (enabled && dontIndex >= 0 && dontIndex < index) {
+            return parseMulWithConditionals(new ParsingWithConditionalsResult(alreadyParsed, toParse.substring(dontIndex + 6), false));
+        }
+
+        if (!enabled) {
+            if (doIndex < 0) {
+                return new ParsingWithConditionalsResult(alreadyParsed, "", false);
+            } else {
+                return parseMulWithConditionals(new ParsingWithConditionalsResult(alreadyParsed, toParse.substring(doIndex + 4), true));
+            }
+        }
+
+        index += 4;
+
+        char currentChar = toParse.charAt(index);
+        StringBuilder firstArgument = new StringBuilder();
+        while (Character.isDigit(currentChar)) {
+            firstArgument.append(currentChar);
+            index++;
+            currentChar = toParse.charAt(index);
+        }
+
+        if (currentChar != ',') {
+            return parseMulWithConditionals(new ParsingWithConditionalsResult(alreadyParsed, toParse.substring(index), true));
+        }
+
+        index++;
+        currentChar = toParse.charAt(index);
+        StringBuilder secondArgument = new StringBuilder();
+        while (Character.isDigit(currentChar)) {
+            secondArgument.append(currentChar);
+            index++;
+            currentChar = toParse.charAt(index);
+        }
+
+        if (currentChar != ')') {
+            return parseMulWithConditionals(new ParsingWithConditionalsResult(alreadyParsed, toParse.substring(index), true));
+        }
+
+        alreadyParsed.add(new Mul(Long.parseLong(firstArgument.toString()), Long.parseLong(secondArgument.toString())));
+        return parseMulWithConditionals(new ParsingWithConditionalsResult(alreadyParsed, toParse.substring(index), true));
     }
 
     public record Mul(long x, long y) {
@@ -84,5 +140,8 @@ public class Day3 implements Problem {
     }
 
     public record ParsingResult(List<Mul> parsed, String inputLeft) {
+    }
+
+    public record ParsingWithConditionalsResult(List<Mul> parsed, String inputLeft, boolean enabled) {
     }
 }
