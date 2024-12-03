@@ -4,15 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import problem.Problem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Day3 implements Problem {
 
     private static final Logger logger = LoggerFactory.getLogger(Day3.class);
+    private String input;
 
     @Override
     public Object solvePart1() {
-        return null;
+        return parseMult(new ParsingResult(new ArrayList<>(), input))
+                .parsed
+                .stream()
+                .mapToLong(Mul::evaluate)
+                .sum();
     }
 
     @Override
@@ -22,7 +28,7 @@ public class Day3 implements Problem {
 
     @Override
     public void parseInput(String input) {
-
+        this.input = input;
     }
 
     @Override
