@@ -65,5 +65,9 @@ public class Day3Test {
         assertThat(result.inputLeft()).isEmpty();
     }
 
-
+    @Test
+    public void testCasePart2() {
+        day3.parseInput(testDataPart2);
+        assertThat(day3.solvePart2()).isEqualTo(48L);
+    }
 }

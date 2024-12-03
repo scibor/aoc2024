@@ -23,7 +23,11 @@ public class Day3 implements Problem {
 
     @Override
     public Object solvePart2() {
-        return null;
+        return parseMulWithConditionals(new ParsingWithConditionalsResult(new ArrayList<>(), input, true))
+                .parsed
+                .stream()
+                .mapToLong(Mul::evaluate)
+                .sum();
     }
 
     @Override
