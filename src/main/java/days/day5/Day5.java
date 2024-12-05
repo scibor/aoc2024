@@ -26,6 +26,13 @@ public class Day5 implements Problem {
         return true;
     }
 
+    public static int middleOfUpdate(List<Integer> list) {
+        if (list.size() % 2 == 0) {
+            throw new IllegalArgumentException("Updates should be of odd length");
+        }
+        return list.get(list.size() / 2);
+    }
+
     @Override
     public Object solvePart1() {
         return null;

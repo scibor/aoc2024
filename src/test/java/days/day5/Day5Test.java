@@ -65,4 +65,10 @@ public class Day5Test {
         AssertionsForClassTypes.assertThat(Day5.isUpdateInCorrectOrder(day5.getOrderingRules(), List.of(1, 3, 2))).isFalse();
     }
 
+    @Test
+    public void middleOfUpdate() {
+        var list = List.of(1, 2, 3, 4, 5);
+        AssertionsForClassTypes.assertThat(Day5.middleOfUpdate(list)).isEqualTo(3);
+    }
+
 }
