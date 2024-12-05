@@ -45,5 +45,11 @@ public class Day4Test {
         assertThat(Day4.padBoard(input)).isEqualTo(expected);
     }
 
+    @Test
+    public void countXmases() {
+        var input = new char[][]{{'X', 'M', 'A', 'S'}};
+        assertThat(day4.countXmases(Day4.padBoard(input))).isEqualTo(1);
+    }
+
 
 }

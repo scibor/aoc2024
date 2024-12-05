@@ -44,4 +44,17 @@ public class Day4 implements Problem {
     public void cleanData() {
 
     }
+
+    public int countXmases(char[][] paddedChars) {
+        int count = 0;
+        for (int i = 3; i < paddedChars.length - 3; i++) {
+            for (int j = 3; j < paddedChars[0].length - 3; j++) {
+                if (paddedChars[i][j] == 'X' && paddedChars[i][j + 1] == 'M' &&
+                        paddedChars[i][j + 2] == 'A' && paddedChars[i][j + 3] == 'S') {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
