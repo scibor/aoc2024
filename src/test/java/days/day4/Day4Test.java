@@ -76,4 +76,18 @@ public class Day4Test {
         day4.parseInput(testData);
         assertThat(day4.solvePart1()).isEqualTo(18);
     }
+
+    @Test
+    public void countMases() {
+        var input = new char[][]{
+                {'M', 'X', 'S', 'X', 'M', 'X', 'M'},
+                {'X', 'A', 'X', 'X', 'X', 'A', 'X'},
+                {'M', 'X', 'S', 'X', 'S', 'X', 'S'},
+                {'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+                {'S', 'X', 'M', 'X', 'S', 'X', 'S'},
+                {'X', 'A', 'X', 'X', 'X', 'A', 'X'},
+                {'S', 'X', 'M', 'X', 'M', 'X', 'M'}
+        };
+        assertThat(day4.countMases(Day4.padBoard(input))).isEqualTo(4);
+    }
 }

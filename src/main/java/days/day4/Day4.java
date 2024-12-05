@@ -99,4 +99,32 @@ public class Day4 implements Problem {
         }
         return count;
     }
+
+    public int countMases(char[][] paddedChars) {
+        int count = 0;
+        for (int i = 3; i < paddedChars.length - 3; i++) {
+            for (int j = 3; j < paddedChars[0].length - 3; j++) {
+                if (paddedChars[i][j] == 'A') {
+                    if (paddedChars[i - 1][j - 1] == 'M' && paddedChars[i + 1][j + 1] == 'S' &&
+                            paddedChars[i - 1][j + 1] == 'M' && paddedChars[i + 1][j - 1] == 'S') {
+                        count++;
+                    }
+                    if (paddedChars[i - 1][j - 1] == 'S' && paddedChars[i + 1][j + 1] == 'M' &&
+                            paddedChars[i - 1][j + 1] == 'M' && paddedChars[i + 1][j - 1] == 'S') {
+                        count++;
+                    }
+                    if (paddedChars[i - 1][j - 1] == 'S' && paddedChars[i + 1][j + 1] == 'M' &&
+                            paddedChars[i - 1][j + 1] == 'S' && paddedChars[i + 1][j - 1] == 'M') {
+                        count++;
+                    }
+                    if (paddedChars[i - 1][j - 1] == 'M' && paddedChars[i + 1][j + 1] == 'S' &&
+                            paddedChars[i - 1][j + 1] == 'S' && paddedChars[i + 1][j - 1] == 'M') {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+
+    }
 }
