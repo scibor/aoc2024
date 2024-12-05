@@ -35,7 +35,7 @@ public class Day5 implements Problem {
 
     @Override
     public Object solvePart1() {
-        return null;
+        return updates.stream().filter(x -> Day5.isUpdateInCorrectOrder(orderingRules, x)).mapToInt(Day5::middleOfUpdate).sum();
     }
 
     @Override

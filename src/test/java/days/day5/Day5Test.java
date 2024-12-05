@@ -71,4 +71,10 @@ public class Day5Test {
         AssertionsForClassTypes.assertThat(Day5.middleOfUpdate(list)).isEqualTo(3);
     }
 
+    @Test
+    public void testCase1() {
+        day5.parseInput(testData);
+        AssertionsForClassTypes.assertThat(day5.solvePart1()).isEqualTo(143);
+    }
+
 }
