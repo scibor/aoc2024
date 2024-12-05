@@ -1,5 +1,6 @@
 package days.day5;
 
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.Utils;
@@ -34,6 +35,20 @@ public class Day5Test {
         day5.parseInput(input);
         assertThat(day5)
                 .hasOnlyUpdates(List.of(1, 2, 3))
-                .hasOrderingRules(Map.of(1, List.of(2, 3), 2, List.of(3)));
+                .hasOrderingRules(Map.of(2, List.of(1), 3, List.of(1, 2)));
     }
+
+    @Test
+    public void isUpdateInCorrectOrder() {
+        String input = """
+                1|2
+                1|3
+                2|3
+                                
+                1,2,3""";
+
+        day5.parseInput(input);
+        AssertionsForClassTypes.assertThat(Day5.isUpdateInCorrectOrder(day5.getOrderingRules(), List.of(1, 2, 3))).isTrue();
+    }
+
 }

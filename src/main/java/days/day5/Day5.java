@@ -14,6 +14,18 @@ public class Day5 implements Problem {
     private final Map<Integer, List<Integer>> orderingRules = new HashMap<>();
     private final List<List<Integer>> updates = new ArrayList<>();
 
+    public static boolean isUpdateInCorrectOrder(Map<Integer, List<Integer>> orderingRules, List<Integer> update) {
+        for (int i = 0; i < update.size(); i++) {
+            if (orderingRules.containsKey(update.get(i)) && i < update.size() - 1) {
+                List<Integer> numbersThatShouldBeBefore = orderingRules.get(update.get(i));
+                if (update.subList(i + 1, update.size()).stream().anyMatch(numbersThatShouldBeBefore::contains)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public Object solvePart1() {
         return null;
@@ -37,12 +49,12 @@ public class Day5 implements Problem {
                 String[] split = line.trim().split("\\|");
                 int from = Integer.parseInt(split[0]);
                 int to = Integer.parseInt(split[1]);
-                if (orderingRules.containsKey(from)) {
-                    orderingRules.get(from).add(to);
+                if (orderingRules.containsKey(to)) {
+                    orderingRules.get(to).add(from);
                 } else {
-                    List<Integer> numbersThatAreAfter = new ArrayList<>();
-                    numbersThatAreAfter.add(to);
-                    orderingRules.put(from, numbersThatAreAfter);
+                    List<Integer> numbersThatAreBefore = new ArrayList<>();
+                    numbersThatAreBefore.add(from);
+                    orderingRules.put(to, numbersThatAreBefore);
                 }
             } else {
                 List<Integer> update = Arrays.stream(line.trim().split(",")).map(Integer::parseInt).collect(Collectors.toList());
@@ -55,6 +67,7 @@ public class Day5 implements Problem {
     public void cleanData() {
 
     }
+
 
     public List<List<Integer>> getUpdates() {
         return updates;
