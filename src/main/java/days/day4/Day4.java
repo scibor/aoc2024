@@ -36,7 +36,7 @@ public class Day4 implements Problem {
 
     @Override
     public Object solvePart2() {
-        return null;
+        return countMases(paddedInput);
     }
 
     @Override

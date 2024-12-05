@@ -90,4 +90,11 @@ public class Day4Test {
         };
         assertThat(day4.countMases(Day4.padBoard(input))).isEqualTo(4);
     }
+
+    @Test
+    public void testCasePart2() {
+        day4.parseInput(testData);
+        assertThat(day4.solvePart2()).isEqualTo(9);
+    }
+
 }
