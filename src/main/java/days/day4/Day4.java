@@ -53,6 +53,34 @@ public class Day4 implements Problem {
                         paddedChars[i][j + 2] == 'A' && paddedChars[i][j + 3] == 'S') {
                     count++;
                 }
+                if (paddedChars[i][j] == 'X' && paddedChars[i][j - 1] == 'M' &&
+                        paddedChars[i][j - 2] == 'A' && paddedChars[i][j - 3] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i + 1][j] == 'M' &&
+                        paddedChars[i + 2][j] == 'A' && paddedChars[i + 3][j] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i - 1][j] == 'M' &&
+                        paddedChars[i - 2][j] == 'A' && paddedChars[i - 3][j] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i + 1][j + 1] == 'M' &&
+                        paddedChars[i + 2][j + 2] == 'A' && paddedChars[i + 3][j + 3] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i - 1][j - 1] == 'M' &&
+                        paddedChars[i - 2][j - 2] == 'A' && paddedChars[i - 3][j - 3] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i + 1][j - 1] == 'M' &&
+                        paddedChars[i + 2][j - 2] == 'A' && paddedChars[i + 3][j - 3] == 'S') {
+                    count++;
+                }
+                if (paddedChars[i][j] == 'X' && paddedChars[i - 1][j + 1] == 'M' &&
+                        paddedChars[i - 2][j + 2] == 'A' && paddedChars[i - 3][j + 3] == 'S') {
+                    count++;
+                }
             }
         }
         return count;

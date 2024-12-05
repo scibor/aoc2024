@@ -51,5 +51,19 @@ public class Day4Test {
         assertThat(day4.countXmases(Day4.padBoard(input))).isEqualTo(1);
     }
 
+    @Test
+    public void countXmases2() {
+        var input = new char[][]{
+                {'S', 'X', 'X', 'S', 'X', 'X', 'S'},
+                {'X', 'A', 'X', 'A', 'X', 'A', 'X'},
+                {'X', 'X', 'M', 'M', 'M', 'X', 'X'},
+                {'S', 'A', 'M', 'X', 'M', 'A', 'S'},
+                {'X', 'X', 'M', 'M', 'M', 'X', 'X'},
+                {'X', 'A', 'X', 'A', 'X', 'A', 'X'},
+                {'S', 'X', 'X', 'S', 'X', 'X', 'S'},
+        };
+        assertThat(day4.countXmases(Day4.padBoard(input))).isEqualTo(8);
+    }
+
 
 }
