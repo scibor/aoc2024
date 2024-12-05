@@ -2,16 +2,22 @@ package days.day4;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.Utils;
+
+import java.io.File;
+import java.io.IOException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Day4Test {
 
     private Day4 day4;
+    private String testData;
 
     @BeforeClass
-    public void setUp() {
+    public void setUp() throws IOException {
         day4 = new Day4();
+        testData = Utils.readAsString(new File("src/main/resources/inputs/day4-test.txt"));
     }
 
     @Test
@@ -63,6 +69,12 @@ public class Day4Test {
                 {'S', 'X', 'X', 'S', 'X', 'X', 'S'},
         };
         assertThat(day4.countXmases(Day4.padBoard(input))).isEqualTo(8);
+    }
+
+    @Test
+    public void testCasePart1() {
+        day4.parseInput(testData);
+        assertThat(day4.solvePart1()).isEqualTo(18);
     }
 
 

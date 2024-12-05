@@ -4,9 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import problem.Problem;
 
+import java.util.List;
+
 public class Day4 implements Problem {
 
     private static final Logger logger = LoggerFactory.getLogger(Day4.class);
+
+    private char[][] paddedInput;
 
     public static char[][] padBoard(char[][] board) {
         int newWidth = board[0].length + 6;
@@ -27,7 +31,7 @@ public class Day4 implements Problem {
 
     @Override
     public Object solvePart1() {
-        return null;
+        return countXmases(paddedInput);
     }
 
     @Override
@@ -37,7 +41,17 @@ public class Day4 implements Problem {
 
     @Override
     public void parseInput(String input) {
+        List<String> lines = input.lines().toList();
+        int height = lines.size();
+        int width = input.lines().findFirst().get().length();
 
+        char[][] inputArray = new char[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                inputArray[i][j] = lines.get(i).charAt(j);
+            }
+        }
+        paddedInput = Day4.padBoard(inputArray);
     }
 
     @Override
