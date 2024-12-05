@@ -56,7 +56,7 @@ public class Day4 implements Problem {
 
     @Override
     public void cleanData() {
-
+        paddedInput = null;
     }
 
     public int countXmases(char[][] paddedChars) {
