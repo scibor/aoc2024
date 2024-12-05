@@ -49,6 +49,20 @@ public class Day5Test {
 
         day5.parseInput(input);
         AssertionsForClassTypes.assertThat(Day5.isUpdateInCorrectOrder(day5.getOrderingRules(), List.of(1, 2, 3))).isTrue();
+
+    }
+
+    @Test
+    public void isUpdateInIncorrectOrder() {
+        String input = """
+                1|2
+                1|3
+                2|3
+                                
+                1,3,2""";
+
+        day5.parseInput(input);
+        AssertionsForClassTypes.assertThat(Day5.isUpdateInCorrectOrder(day5.getOrderingRules(), List.of(1, 3, 2))).isFalse();
     }
 
 }
