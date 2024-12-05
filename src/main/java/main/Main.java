@@ -1,6 +1,6 @@
 package main;
 
-import days.day3.Day3;
+import days.day4.Day4;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import problem.Problem;
@@ -16,8 +16,8 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
-        String fileName = "day3.txt";
-        Problem problem = new Day3();
+        String fileName = "day4.txt";
+        Problem problem = new Day4();
         File inputFile = Path.of("src/main/resources/inputs/" + fileName).toFile();
         String input = Utils.readAsString(inputFile);
         problem.parseInput(input);
