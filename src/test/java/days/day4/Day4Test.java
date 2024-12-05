@@ -76,6 +76,4 @@ public class Day4Test {
         day4.parseInput(testData);
         assertThat(day4.solvePart1()).isEqualTo(18);
     }
-
-
 }
