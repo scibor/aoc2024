@@ -64,7 +64,8 @@ public class Day1Test {
                 1   3
                 2   4""";
         day1.parseInput(data);
-        Day1Assert.assertThat(day1).hasList1(1, 2).hasList2(3, 4);
+        AssertionsForInterfaceTypes.assertThat(day1.getList1()).isEqualTo(List.of(1, 2));
+        AssertionsForInterfaceTypes.assertThat(day1.getList2()).isEqualTo(List.of(3, 4));
     }
 
     @Test

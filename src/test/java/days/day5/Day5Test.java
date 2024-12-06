@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static days.day5.Day5Assert.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class Day5Test {
 
@@ -34,9 +34,8 @@ public class Day5Test {
                 1,2,3""";
 
         day5.parseInput(input);
-        assertThat(day5)
-                .hasOnlyUpdates(List.of(1, 2, 3))
-                .hasOrderingRules(Map.of(2, List.of(1), 3, List.of(1, 2)));
+        assertThat(day5.getUpdates()).isEqualTo(List.of(List.of(1, 2, 3)));
+        assertThat(day5.getOrderingRules()).isEqualTo(Map.of(2, List.of(1), 3, List.of(1, 2)));
     }
 
     @Test

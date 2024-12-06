@@ -1,6 +1,5 @@
 plugins {
     java
-    id("org.assertj.generator") version "1.1.0"
     application
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
@@ -20,7 +19,6 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-api:2.0.16")
-    implementation("org.assertj:assertj-assertions-generator:2.2.1")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
 
     runtimeOnly("ch.qos.logback:logback-classic:1.5.12")
