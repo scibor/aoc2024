@@ -52,7 +52,14 @@ public class Day5 implements Problem {
 
     @Override
     public Object solvePart2() {
-        return null;
+        List<List<Integer>> updatesToFix = updates.stream()
+                .filter(x -> !Day5.isUpdateInCorrectOrder(orderingRules, x)).toList();
+        int result = 0;
+        for (List<Integer> update : updatesToFix) {
+            Day5.fixUpdate(orderingRules, update);
+            result += Day5.middleOfUpdate(update);
+        }
+        return result;
     }
 
     @Override

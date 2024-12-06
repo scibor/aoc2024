@@ -93,4 +93,9 @@ public class Day5Test {
         AssertionsForClassTypes.assertThat(update).isEqualTo(List.of(1, 2, 3));
     }
 
+    @Test
+    public void testCase2() {
+        day5.parseInput(testData);
+        AssertionsForClassTypes.assertThat(day5.solvePart2()).isEqualTo(123);
+    }
 }
