@@ -15,15 +15,18 @@ public class Day6 implements Problem {
 
     private static final Logger logger = LoggerFactory.getLogger(Day6.class);
     private MapElement[][] map;
-    private MapElement[][] modifiedMap;
     private Direction guardDirection;
     private Point2D guardLocation;
+    private Point2D originalGuardLocation;
     private boolean[][] visited;
 
     @Override
     public Object solvePart1() {
+        int steps = 0;
         while (this.makeStep()) {
+            steps++;
         }
+        logger.debug("Steps: {}", steps);
         int result = 0;
         for (boolean[] row : visited) {
             for (int j = 0; j < visited[0].length; j++) {
@@ -40,22 +43,23 @@ public class Day6 implements Problem {
         int loopingCount = 0;
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
+                guardDirection = N;
+                guardLocation = originalGuardLocation;
                 logger.debug("Modifying at ({},{})", i, j);
+                MapElement[][] modifiedMap;
                 if (map[i][j].equals(MapElement.EMPTY)) {
                     modifiedMap = copyWithModification(map, i, j);
+                } else {
+                    continue;
                 }
-                boolean[] states = new boolean[map.length * map[0].length * 4];
-                int currentState = codifyState(guardLocation.y(), guardLocation.x(), N, modifiedMap);
-                states[currentState] = true;
-                while (currentState > 0) {
-                    currentState = makeStep(modifiedMap);
-                    if (currentState < 0) break;
-                    if (states[currentState]) {
+                int numberOfSteps = 0;
+                while (makeStep(modifiedMap)) {
+                    numberOfSteps++;
+                    if (numberOfSteps > modifiedMap.length * modifiedMap[0].length * 4) {
                         loopingCount++;
+                        logger.debug("Number of steps: {}", numberOfSteps);
                         logger.debug("Found possible obstacle placement: ({},{})", i, j);
                         break;
-                    } else {
-                        states[currentState] = true;
                     }
                 }
             }
@@ -63,7 +67,7 @@ public class Day6 implements Problem {
         return loopingCount;
     }
 
-    private int makeStep(MapElement[][] modifiedMap) {
+    private boolean makeStep(MapElement[][] modifiedMap) {
         int i = guardLocation.y();
         int j = guardLocation.x();
         int newI = -1;
@@ -87,8 +91,7 @@ public class Day6 implements Problem {
             }
         }
         if (newI < 0 || newJ < 0 || newI >= modifiedMap.length || newJ >= modifiedMap[0].length) {
-            // -1 for off  the board
-            return -1;
+            return false;
         }
         if (modifiedMap[newI][newJ].equals(MapElement.EMPTY)) {
             guardLocation = new Point2D(newI, newJ);
@@ -97,11 +100,10 @@ public class Day6 implements Problem {
             modifiedMap[newI][newJ] = MapElement.GUARD;
         } else {
             guardDirection = turnGuard(guardDirection);
-            makeStep();
+            makeStep(modifiedMap);
         }
 
-        // if step was possible return codified state
-        return codifyState(i, j, guardDirection, modifiedMap);
+        return true;
     }
 
     public MapElement[][] copyWithModification(MapElement[][] original, int i, int j) {
@@ -135,6 +137,7 @@ public class Day6 implements Problem {
                 if (mapElement.equals(MapElement.GUARD)) {
                     visited[i][j] = true;
                     guardLocation = new Point2D(i, j);
+                    originalGuardLocation = new Point2D(i, j);
                 }
                 map[i][j] = mapElement;
             }
@@ -186,6 +189,8 @@ public class Day6 implements Problem {
             }
         }
         if (newI < 0 || newJ < 0 || newI >= map.length || newJ >= map[0].length) {
+            map[i][j] = MapElement.EMPTY;
+            map[originalGuardLocation.y()][originalGuardLocation.x()] = MapElement.GUARD;
             return false;
         }
         if (map[newI][newJ].equals(MapElement.EMPTY)) {
@@ -218,9 +223,4 @@ public class Day6 implements Problem {
             case E -> 4;
         };
     }
-
-    public int codifyState(int i, int j, Direction direction, MapElement[][] map) {
-        return ((i * map.length) + j) * 4 + directionToNumber(direction);
-    }
-
 }
