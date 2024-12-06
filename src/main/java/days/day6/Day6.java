@@ -100,6 +100,9 @@ public class Day6 implements Problem {
                 newJ = j - 1;
             }
         }
+        if (newI < 0 || newJ < 0 || newI >= map.length || newJ >= map[0].length) {
+            return false;
+        }
         if (map[newI][newJ].equals(MapElement.EMPTY)) {
             guardLocation = new Point2D(newI, newJ);
             visited[newI][newJ] = true;

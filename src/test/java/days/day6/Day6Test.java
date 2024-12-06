@@ -114,6 +114,14 @@ public class Day6Test {
         assertThat(day6.getGuardLocation()).isEqualTo(new Point2D(1, 3));
     }
 
+    @Test
+    public void stepOffTheBoard() {
+        String input = "^";
+        day6.parseInput(input);
+        boolean possible = day6.makeStep();
+        assertThat(possible).isFalse();
+    }
+
     private <T> void compare2DArray(T[][] a1, T[][] a2) {
         assertThat(a1.length).as("Arrays height should be the same").isEqualTo(a2.length);
         assertThat(a1[0].length).as("Arrays width should be the same").isEqualTo(a2[0].length);
