@@ -3,6 +3,7 @@ package days.day6;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.Direction;
+import utils.Point2D;
 import utils.Utils;
 
 import java.io.File;
@@ -48,6 +49,69 @@ public class Day6Test {
         assertThat(day6.getGuardDirection()).isEqualTo(Direction.N);
         compare2DArray(day6.getMap(), expected);
         compare2DArray(day6.getVisited(), expectedVisited);
+        assertThat(day6.getGuardLocation()).isEqualTo(new Point2D(2, 2));
+    }
+
+    @Test
+    public void makeSingleStep() {
+        String input = """
+                ..#..
+                .....
+                ..^..
+                .....""";
+
+        MapElement[][] expected = new MapElement[][]{
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.OBSTACLE, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.GUARD, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY}
+        };
+
+        boolean[][] expectedVisited = new boolean[][]{
+                {false, false, false, false, false},
+                {false, false, true, false, false},
+                {false, false, true, false, false},
+                {false, false, false, false, false}
+        };
+        day6.parseInput(input);
+        boolean possible = day6.makeStep();
+        assertThat(possible).isTrue();
+        assertThat(day6.getMap()).isEqualTo(expected);
+        assertThat(day6.getVisited()).isEqualTo(expectedVisited);
+        assertThat(day6.getGuardDirection()).isEqualTo(Direction.N);
+        assertThat(day6.getGuardLocation()).isEqualTo(new Point2D(1, 2));
+    }
+
+    @Test
+    public void makeStepWithTurn() {
+        String input = """
+                ..#..
+                .....
+                ..^..
+                .....""";
+
+        MapElement[][] expected = new MapElement[][]{
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.OBSTACLE, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.GUARD, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY}
+        };
+
+        boolean[][] expectedVisited = new boolean[][]{
+                {false, false, false, false, false},
+                {false, false, true, true, false},
+                {false, false, true, false, false},
+                {false, false, false, false, false}
+        };
+        day6.parseInput(input);
+        boolean possible = day6.makeStep();
+        assertThat(possible).isTrue();
+        possible = day6.makeStep();
+        assertThat(possible).isTrue();
+        assertThat(day6.getMap()).isEqualTo(expected);
+        assertThat(day6.getVisited()).isEqualTo(expectedVisited);
+        assertThat(day6.getGuardDirection()).isEqualTo(Direction.E);
+        assertThat(day6.getGuardLocation()).isEqualTo(new Point2D(1, 3));
     }
 
     private <T> void compare2DArray(T[][] a1, T[][] a2) {
