@@ -128,6 +128,31 @@ public class Day6Test {
         assertThat(day6.solvePart1()).isEqualTo(41);
     }
 
+    @Test
+    public void testCasePart2() {
+        day6.parseInput(testData);
+        assertThat(day6.solvePart2()).isEqualTo(6);
+    }
+
+    @Test
+    public void copyWithModification() {
+        MapElement[][] original = new MapElement[][]{
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.OBSTACLE, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.GUARD, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY}
+        };
+
+        MapElement[][] expected = new MapElement[][]{
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.OBSTACLE, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.OBSTACLE, MapElement.EMPTY, MapElement.GUARD, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY},
+                {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY}
+        };
+
+        compare2DArray(day6.copyWithModification(original, 1, 1), expected);
+    }
+
     private <T> void compare2DArray(T[][] a1, T[][] a2) {
         assertThat(a1.length).as("Arrays height should be the same").isEqualTo(a2.length);
         assertThat(a1[0].length).as("Arrays width should be the same").isEqualTo(a2[0].length);
