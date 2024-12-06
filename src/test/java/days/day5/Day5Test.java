@@ -7,6 +7,7 @@ import utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +76,21 @@ public class Day5Test {
     public void testCase1() {
         day5.parseInput(testData);
         AssertionsForClassTypes.assertThat(day5.solvePart1()).isEqualTo(143);
+    }
+
+    @Test
+    public void fixUpdate() {
+        String input = """
+                1|2
+                1|3
+                2|3
+                                
+                1,3,2""";
+
+        day5.parseInput(input);
+        List<Integer> update = new ArrayList<>(List.of(1, 3, 2));
+        Day5.fixUpdate(day5.getOrderingRules(), update);
+        AssertionsForClassTypes.assertThat(update).isEqualTo(List.of(1, 2, 3));
     }
 
 }

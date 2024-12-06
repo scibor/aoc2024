@@ -33,6 +33,18 @@ public class Day5 implements Problem {
         return list.get(list.size() / 2);
     }
 
+    public static void fixUpdate(Map<Integer, List<Integer>> orderingRules, List<Integer> integers) {
+        integers.sort((o1, o2) -> {
+            if (orderingRules.containsKey(o1) && orderingRules.get(o1).contains(o2)) {
+                return 1;
+            }
+            if (orderingRules.containsKey(o2) && orderingRules.get(o2).contains(o1)) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+
     @Override
     public Object solvePart1() {
         return updates.stream().filter(x -> Day5.isUpdateInCorrectOrder(orderingRules, x)).mapToInt(Day5::middleOfUpdate).sum();
