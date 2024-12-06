@@ -20,7 +20,17 @@ public class Day6 implements Problem {
 
     @Override
     public Object solvePart1() {
-        return null;
+        while (this.makeStep()) {
+        }
+        int result = 0;
+        for (boolean[] row : visited) {
+            for (int j = 0; j < visited[0].length; j++) {
+                if (row[j]) {
+                    result++;
+                }
+            }
+        }
+        return result;
     }
 
     @Override

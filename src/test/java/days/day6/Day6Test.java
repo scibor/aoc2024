@@ -122,6 +122,12 @@ public class Day6Test {
         assertThat(possible).isFalse();
     }
 
+    @Test
+    public void testCasePart1() {
+        day6.parseInput(testData);
+        assertThat(day6.solvePart1()).isEqualTo(41);
+    }
+
     private <T> void compare2DArray(T[][] a1, T[][] a2) {
         assertThat(a1.length).as("Arrays height should be the same").isEqualTo(a2.length);
         assertThat(a1[0].length).as("Arrays width should be the same").isEqualTo(a2[0].length);
