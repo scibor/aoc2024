@@ -37,10 +37,17 @@ public class Day6Test {
                 {MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY, MapElement.EMPTY}
         };
 
+        boolean[][] expectedVisited = new boolean[][]{
+                {false, false, false, false, false},
+                {false, false, false, false, false},
+                {false, false, true, false, false},
+                {false, false, false, false, false}
+        };
+
         day6.parseInput(input);
         assertThat(day6.getGuardDirection()).isEqualTo(Direction.N);
         compare2DArray(day6.getMap(), expected);
-        compare2DArray(day6.getVisited(), new boolean[4][5]);
+        compare2DArray(day6.getVisited(), expectedVisited);
     }
 
     private <T> void compare2DArray(T[][] a1, T[][] a2) {

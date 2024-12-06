@@ -43,6 +43,9 @@ public class Day6 implements Problem {
                     default ->
                             throw new IllegalArgumentException("Character should be '.', '#' or '^' but instead was: " + currentChar);
                 };
+                if (mapElement.equals(MapElement.GUARD)) {
+                    visited[i][j] = true;
+                }
                 map[i][j] = mapElement;
             }
         }
