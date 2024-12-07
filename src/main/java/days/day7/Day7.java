@@ -14,9 +14,11 @@ public class Day7 implements Problem {
 
     private static final Logger logger = LoggerFactory.getLogger(Day7.class);
 
+    private List<Equation> equations;
+
     @Override
     public Object solvePart1() {
-        return null;
+        return equations.stream().filter(this::isEquationSolvable).mapToLong(Equation::result).sum();
     }
 
     @Override
@@ -26,7 +28,7 @@ public class Day7 implements Problem {
 
     @Override
     public void parseInput(String input) {
-
+        equations = input.lines().map(this::parseEquation).toList();
     }
 
     @Override
