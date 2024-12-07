@@ -33,7 +33,7 @@ public class Day7 implements Problem {
 
     @Override
     public void cleanData() {
-
+        equations = null;
     }
 
     public Equation parseEquation(String input) {
