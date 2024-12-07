@@ -1,6 +1,7 @@
 package days.day7;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.Utils;
 
@@ -28,5 +29,21 @@ public class Day7Test {
         var equation = day7.parseEquation(input);
         assertThat(equation.result()).isEqualTo(12739906141957L);
         assertThat(equation.arguments()).isEqualTo(List.of(9L, 4L, 5L, 55L, 3L, 5L, 484L, 86L, 9L, 5L, 8L));
+    }
+
+    @DataProvider(name = "equationSolving")
+    public Object[][] equationSolvingDataProvider() {
+        return new Object[][]{
+                {120L, List.of(12L, 10L), true},
+                {22L, List.of(12L, 10L), true},
+                {121L, List.of(12L, 10L), false},
+                {21, List.of(12L, 10L), false},
+        };
+    }
+
+    @Test(dataProvider = "equationSolving")
+    public void equationSolving(long result, List<Long> arguments, boolean expected) {
+        Equation equation = new Equation(result, arguments);
+        assertThat(day7.isEquationSolvable(equation)).isEqualTo(expected);
     }
 }
