@@ -23,7 +23,7 @@ public class Day7 implements Problem {
 
     @Override
     public Object solvePart2() {
-        return null;
+        return equations.stream().filter(this::isEquationSolvablePart2).mapToLong(Equation::result).sum();
     }
 
     @Override

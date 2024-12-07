@@ -58,4 +58,10 @@ public class Day7Test {
         Equation equation = new Equation(156L, List.of(15L, 6L));
         assertThat(day7.isEquationSolvablePart2(equation)).isTrue();
     }
+
+    @Test
+    public void testCasePart2() {
+        day7.parseInput(testData);
+        assertThat(day7.solvePart2()).isEqualTo(11387L);
+    }
 }
