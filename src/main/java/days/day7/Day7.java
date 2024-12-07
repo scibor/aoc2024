@@ -54,4 +54,16 @@ public class Day7 implements Problem {
         }
         return possibleAnswers.contains(equation.result());
     }
+
+    public boolean isEquationSolvablePart2(Equation equation) {
+        List<Long> possibleAnswers = new ArrayList<>();
+        for (long x : equation.arguments()) {
+            if (possibleAnswers.isEmpty()) {
+                possibleAnswers.add(x);
+                continue;
+            }
+            possibleAnswers = possibleAnswers.stream().flatMap(y -> Stream.of(y + x, y * x, Long.parseLong(Long.toString(y) + x))).collect(Collectors.toList());
+        }
+        return possibleAnswers.contains(equation.result());
+    }
 }

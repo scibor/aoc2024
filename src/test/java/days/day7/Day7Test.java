@@ -52,4 +52,10 @@ public class Day7Test {
         day7.parseInput(testData);
         assertThat(day7.solvePart1()).isEqualTo(3749L);
     }
+
+    @Test
+    public void isEquationSolvablePart2() {
+        Equation equation = new Equation(156L, List.of(15L, 6L));
+        assertThat(day7.isEquationSolvablePart2(equation)).isTrue();
+    }
 }
